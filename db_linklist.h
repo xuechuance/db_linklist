@@ -15,10 +15,10 @@
 #
 # See the COPYING file for license information.
 #
-#Copyright (c) 2013  sim szm <xianszm007@gmail.com>
+#Copyright (c) 2013 neo <xuechuance@gmail.com>
 */
-#ifndef DB_LINKLIST_H
-#define DB_LINKLIST_H
+#ifndef DOUBLE_LINKLIST_H
+#define DOUBLE_LINKLIST_H
 
 #include <errno.h>
 #include <stdio.h>
@@ -33,19 +33,19 @@ typedef struct db_lnode{
 }db_lnode_t;
 
 typedef struct db_list{
-	int limit_size;
+	int list_size;
 	db_lnode_t* head;
 	db_lnode_t* tail;
 }db_list_t;
 
 db_list_t* db_list_create(void );
-static inline int __db_list_insert_before(db_list_t** ,int ,void* );
-static inline int __db_list_insert_after(db_list_t** ,int ,void* );
-static inline void __db_lnode_flush(db_list_t* ,int ,void* );
-static inline void __db_list_delete(db_list_t** ,int );
-static inline void __db_list_destory(db_list_t* );
-static inline void* __db_list_visit(db_list_t** ,int );
-static inline void __db_list_travel(db_list_t* ,void(*do_function)(void* ));
-static inline int __db_list_search(db_list_t** ,void* ,int(*compare)(void* ,void* ));
+int db_list_insert_before(db_list_t** ,int ,void* );
+int db_list_insert_after(db_list_t** ,int ,void* );
+int db_lnode_flush(db_list_t* ,int ,void* );
+int db_list_delete(db_list_t** ,int );
+int db_list_destory(db_list_t* );
+void* db_list_visit(db_list_t** ,int );
+int db_list_travel(db_list_t* ,void(*do_function)(void* , int));
+int db_list_search(db_list_t** ,void* ,int(*compare)(void* ,void* ));
 
 #endif
